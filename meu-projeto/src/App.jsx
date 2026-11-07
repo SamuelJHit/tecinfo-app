@@ -3,10 +3,16 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import perfil from './assets/Trabalho.jpg'
+import { BotaoCurtir } from './components/BotaoCurtir'
+import { ExibidorFrase } from './components/ExibidorFrase'
 import './App.css'
 
 function App() {
   const [curtidas, setCurtidas] = useState(0)
+
+  const incrementarCurtidas = () => {
+    setCurtidas((prev) => prev + 1);
+  };
 
   return (
     <>
@@ -20,22 +26,9 @@ function App() {
             Desenvolvedor <code>Fronto-fim</code>
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          
-        >
-          ❤ {curtidas > 0 ? curtidas : null} Curtidas
-        </button>
+        <BotaoCurtir curtidas={curtidas} onCurtir={incrementarCurtidas} />
 
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCurtidas((curtidas) => curtidas + 1)}
-        >
-          Curtir 👍
-        </button>
-        {curtidas > 5 && <p>TECINFO 2026 🔥</p>}
+        <ExibidorFrase curtidas={curtidas} />
       </section>
 
       <div className="ticks"></div>
